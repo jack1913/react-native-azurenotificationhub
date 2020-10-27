@@ -33,7 +33,7 @@ import static com.azure.reactnative.notificationhub.ReactNativeConstants.*;
 public class ReactNativeNotificationHubModule extends ReactContextBaseJavaModule implements
         ActivityEventListener, LifecycleEventListener {
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    private static final int NOTIFICATION_DELAY_ON_START = 3000;
+    private static final int NOTIFICATION_DELAY_ON_START = 1000;
 
     private ReactApplicationContext mReactContext;
     private LocalBroadcastReceiver mLocalBroadcastReceiver;
