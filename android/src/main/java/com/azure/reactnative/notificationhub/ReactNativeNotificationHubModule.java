@@ -376,14 +376,14 @@ public class ReactNativeNotificationHubModule extends ReactContextBaseJavaModule
     @Override
     public void onHostResume() {
         setIsForeground(true);
+        NotificationManager notificationManager = (NotificationManager) getReactApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
         Activity activity = getCurrentActivity();
         if (activity != null) {
             Intent intent = activity.getIntent();
             if (intent != null) {
                 Bundle bundle = ReactNativeUtil.getBundleFromIntent(intent);
                 if (bundle != null) {
-                    NotificationManager notificationManager = (NotificationManager) getReactApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-                    notificationManager.cancelAll();
                     ReactNativeUtil.removeNotificationFromIntent(intent);
                     bundle.putBoolean(KEY_REMOTE_NOTIFICATION_FOREGROUND, false);
                     bundle.putBoolean(KEY_REMOTE_NOTIFICATION_USER_INTERACTION, true);
@@ -394,6 +394,7 @@ public class ReactNativeNotificationHubModule extends ReactContextBaseJavaModule
             }
         }
     }
+
 
     @ReactMethod
     public void cancelAllLocalNotifications(Promise promise) {
